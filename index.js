@@ -26,11 +26,16 @@ const http = require('http')
 const PORT = 4000
 
 const server = http.createServer((req,res)=>{
-    res.writeHead(200, {'Content-type':'text/html'})
+    if(req.url === '/'){res.writeHead(200, {'Content-type':'text/html'})
     fs.readFile('./index.html', (err,data)=>{
     err? console.log(err): res.write(data)
     res.end()
-    })
+    })}
+    if(req.url === '/info'){res.writeHead(200, {'Content-type':'text/html'})
+        fs.readFile('./info.html', (err,data)=>{
+        err? console.log(err): res.write(data)
+        res.end()
+        })}
     
 })
 
